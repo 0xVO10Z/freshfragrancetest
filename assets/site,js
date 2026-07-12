@@ -1,0 +1,119 @@
+document.addEventListener("DOMContentLoaded", () => {
+    /* ---------- MOBILE MENU ---------- */
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
+    menuToggle?.addEventListener("click", () => mainNav.classList.toggle("open"));
+
+    /* ---------- NEWSLETTER FORM ---------- */
+    const newsletterForm = document.getElementById("newsletterForm");
+    const newsletterMsg = document.getElementById("newsletterMsg");
+    newsletterForm?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = document.getElementById("newsletterEmail").value.trim();
+        const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        if (isValid) {
+            newsletterMsg.textContent = ("footer.subscribeSuccess") || "Thanks — you are subscribed!";
+            newsletterMsg.className = "newsletter-msg success";
+            newsletterForm.reset();
+        } else {
+            newsletterMsg.textContent = ("footer.subscribeError") || "Please enter a valid email address.";
+            newsletterMsg.className = "newsletter-msg error";
+        }
+    });
+
+    /* ================================================================
+       COUNTRY / CURRENCY SWITCHER
+       ================================================================ */
+    const COUNTRIES = {
+        GB: { currency: "GBP", symbol: "£", rate: 1, label: "🇬🇧 United Kingdom (GBP £)" },
+        US: { currency: "USD", symbol: "$", rate: 1.27, label: "🇺🇸 United States (USD $)" },
+        AE: { currency: "AED", symbol: "AED ", rate: 4.66, label: "🇦🇪 United Arab Emirates (AED)" },
+        FR: { currency: "EUR", symbol: "€", rate: 1.16, label: "🇫🇷 France (EUR €)" },
+    };
+
+    async function loadLiveRates() {
+        try {
+            const res = await fetch("https://api.exchangerate-api.com/v4/latest/GBP");
+            const data = await res.json();
+            COUNTRIES.US.rate = data.rates.USD;
+            COUNTRIES.AE.rate = data.rates.AED;
+            COUNTRIES.FR.rate = data.rates.EUR;
+            localStorage.setItem("ff_rates", JSON.stringify(data.rates));
+            localStorage.setItem("ff_rates_time", Date.now());
+        } catch {
+            const cached = localStorage.getItem("ff_rates");
+            if (cached) {
+                const rates = JSON.parse(cached);
+                COUNTRIES.US.rate = rates.USD;
+                COUNTRIES.AE.rate = rates.AED;
+                COUNTRIES.FR.rate = rates.EUR;
+            }
+        }
+    }
+
+    function applyCountry(code) {
+        const c = COUNTRIES[code] || COUNTRIES.GB;
+        const priceEls = document.querySelectorAll("[data-price-gbp]");
+
+        if (!isFirstLoad) fadeOut();
+
+        setTimeout(
+            () => {
+                priceEls.forEach((el) => {
+                    const base = parseFloat(el.getAttribute("data-price-gbp"));
+                    const converted = (base * c.rate).toFixed(2);
+                    el.textContent = `${c.symbol}${converted}`;
+                    el.classList.remove("ff-pulse");
+                    void el.offsetWidth;
+                    el.classList.add("ff-pulse");
+                });
+
+                localStorage.setItem("ff_country", code);
+                document.getElementById("countrySelect").value = code;
+                document.getElementById("countrySelectFooter").value = code;
+
+                if (!isFirstLoad) fadeIn();
+            },
+            isFirstLoad ? 0 : 200
+        );
+    }
+
+    let isFirstLoad = true;
+    function fadeOut() { document.body.classList.add("ff-updating"); }
+    function fadeIn() { requestAnimationFrame(() => document.body.classList.remove("ff-updating")); }
+
+    /* ---------- BUILD FOOTER SELECT MIRRORS ---------- */
+    const countrySelectTop = document.getElementById("countrySelect");
+    const countrySelectFooter = document.getElementById("countrySelectFooter");
+    countrySelectFooter.innerHTML = countrySelectTop.innerHTML;
+
+    /* ---------- EVENT LISTENERS (keep top + footer in sync) ---------- */
+    [countrySelectTop, countrySelectFooter].forEach((sel) => {
+        sel.addEventListener("change", (e) => applyCountry(e.target.value));
+    });
+
+    /* ---------- OPTIONAL FAQ ACCORDION (only runs if .faq-item exists on the page) ---------- */
+    document.querySelectorAll(".faq-item").forEach((item) => {
+        const question = item.querySelector(".faq-question");
+        const answer = item.querySelector(".faq-answer");
+        question.addEventListener("click", () => {
+            const isOpen = item.classList.contains("open");
+            document.querySelectorAll(".faq-item").forEach((i) => {
+                i.classList.remove("open");
+                i.querySelector(".faq-answer").style.maxHeight = null;
+            });
+            if (!isOpen) {
+                item.classList.add("open");
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+        });
+    });
+
+    /* ---------- INIT: restore saved preferences ---------- */
+    (async () => {
+        await loadLiveRates();
+        const savedCountry = localStorage.getItem("ff_country") || "GB";
+        applyCountry(savedCountry);
+        isFirstLoad = false;
+    })();
+});
