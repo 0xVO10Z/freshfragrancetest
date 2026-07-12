@@ -1,10 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
-    /* ---------- MOBILE MENU ---------- */
     const menuToggle = document.getElementById("menuToggle");
     const mainNav = document.getElementById("mainNav");
-    menuToggle?.addEventListener("click", () => mainNav.classList.toggle("open"));
+    const navClose = document.querySelector(".nav-close");
+    const body = document.body;
 
-    /* ---------- NEWSLETTER FORM ---------- */
+    function updateMobileMenuState() {
+        body.classList.toggle("nav-open", mainNav?.classList.contains("open"));
+    }
+
+    menuToggle?.addEventListener("click", () => {
+        mainNav?.classList.toggle("open");
+        updateMobileMenuState();
+    });
+
+    navClose?.addEventListener("click", () => {
+        mainNav?.classList.remove("open");
+        updateMobileMenuState();
+    });
+
+    document.querySelectorAll(".has-mega > a").forEach((link) => {
+        link.addEventListener("click", (e) => {
+            if (window.matchMedia("(max-width: 1150px)").matches) {
+                e.preventDefault();
+                link.parentElement.classList.toggle("open");
+            }
+        });
+    });
+
     const newsletterForm = document.getElementById("newsletterForm");
     const newsletterMsg = document.getElementById("newsletterMsg");
     newsletterForm?.addEventListener("submit", (e) => {
@@ -21,9 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    /* ================================================================
-       COUNTRY / CURRENCY SWITCHER
-       ================================================================ */
     const COUNTRIES = {
         GB: { currency: "GBP", symbol: "£", rate: 1, label: "🇬🇧 United Kingdom (GBP £)" },
         US: { currency: "USD", symbol: "$", rate: 1.27, label: "🇺🇸 United States (USD $)" },
@@ -82,17 +101,17 @@ document.addEventListener("DOMContentLoaded", () => {
     function fadeOut() { document.body.classList.add("ff-updating"); }
     function fadeIn() { requestAnimationFrame(() => document.body.classList.remove("ff-updating")); }
 
-    /* ---------- BUILD FOOTER SELECT MIRRORS ---------- */
     const countrySelectTop = document.getElementById("countrySelect");
     const countrySelectFooter = document.getElementById("countrySelectFooter");
-    countrySelectFooter.innerHTML = countrySelectTop.innerHTML;
+    if (countrySelectTop && countrySelectFooter) {
+        countrySelectFooter.innerHTML = countrySelectTop.innerHTML;
+        [countrySelectTop, countrySelectFooter].forEach((sel) => {
+            sel.addEventListener("change", (e) => applyCountry(e.target.value));
+        });
+    } else if (countrySelectTop) {
+        countrySelectTop.addEventListener("change", (e) => applyCountry(e.target.value));
+    }
 
-    /* ---------- EVENT LISTENERS (keep top + footer in sync) ---------- */
-    [countrySelectTop, countrySelectFooter].forEach((sel) => {
-        sel.addEventListener("change", (e) => applyCountry(e.target.value));
-    });
-
-    /* ---------- OPTIONAL FAQ ACCORDION (only runs if .faq-item exists on the page) ---------- */
     document.querySelectorAll(".faq-item").forEach((item) => {
         const question = item.querySelector(".faq-question");
         const answer = item.querySelector(".faq-answer");
@@ -109,7 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    /* ---------- INIT: restore saved preferences ---------- */
     (async () => {
         await loadLiveRates();
         const savedCountry = localStorage.getItem("ff_country") || "GB";
