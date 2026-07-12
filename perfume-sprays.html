@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfume Sprays | FreshFragrance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+    <div class="topbar">
+        <div class="topbar-inner">
+            <div class="topbar-left">
+                <div class="select-wrap">
+                    <span class="label" data-i18n="topbar.country">COUNTRY</span>
+                    <select id="countrySelect" aria-label="Select country and currency">
+                        <option value="GB">🇬🇧 United Kingdom (GBP £)</option>
+                        <option value="US">🇺🇸 United States (USD $)</option>
+                        <option value="AE">🇦🇪 United Arab Emirates (AED)</option>
+                        <option value="FR">🇫🇷 France (EUR €)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/freshfragrancee/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@fresh_fragrance" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo">FreshFragrance</a>
+            <div class="search-bar">
+                <input type="text" data-i18n-placeholder="header.searchPlaceholder" placeholder="Search the Collection" />
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="header-icons">
+                <a href="#"><i class="fa-regular fa-user"></i></a>
+                <a href="#"><i class="fa-regular fa-heart"></i></a>
+                <a href="#"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count">2</span></a>
+                <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+
+        <nav class="main-nav" id="mainNav">
+            <ul class="nav-inner">
+                <li class="has-mega active">
+                    <a href="#" data-i18n="nav.perfumeCollection">Perfume Collection ▾</a>
+                    <div class="mega-menu">
+                        <div class="mega-col">
+                            <h4 data-i18n="nav.shopByType">SHOP BY TYPE</h4>
+                            <ul>
+                                <li><a href="perfume-sprays.html" data-i18n="nav.perfumeSprays">Perfume Sprays</a></li>
+                                <li><a href="fragrance-gift-sets.html" data-i18n="nav.giftSets">Fragrance Gift Sets</a></li>
+                                <li><a href="perfume-oils-attars.html" data-i18n="nav.attars">Perfume Oils & Attars</a></li>
+                                <li><a href="body-sprays-deodorants.html" data-i18n="nav.bodySprays">Body Sprays & Deodorants</a></li>
+                                <li><a href="bakhoor-incense.html" data-i18n="nav.bakhoor">Bakhoor & Incense</a></li>
+                                <li><a href="luxury-air-fresheners.html" data-i18n="nav.airFresheners">Luxury Air Fresheners</a></li>
+                            </ul>
+                        </div>
+                        <div class="mega-col">
+                            <h4 data-i18n="nav.shopByStyle">SHOP BY STYLE</h4>
+                            <ul>
+                                <li><a href="oud-woody.html" data-i18n="nav.oudWoody">Oud & Woody</a></li>
+                                <li><a href="floral.html" data-i18n="nav.floral">Floral</a></li>
+                                <li><a href="fresh-citrus.html" data-i18n="nav.freshCitrus">Fresh & Citrus</a></li>
+                                <li><a href="amber-oriental.html" data-i18n="nav.amberOriental">Amber & Oriental</a></li>
+                                <li><a href="sweet-gourmand.html" data-i18n="nav.sweetGourmand">Sweet & Gourmand</a></li>
+                                <li><a href="musk-soft.html" data-i18n="nav.muskSoft">Musk & Soft</a></li>
+                            </ul>
+                        </div>
+                        <div class="mega-col">
+                            <h4 data-i18n="nav.shopByGender">SHOP BY GENDER</h4>
+                            <ul>
+                                <li><a href="mens-fragrances.html" data-i18n="nav.mens">Men's Fragrances</a></li>
+                                <li><a href="womens-fragrances.html" data-i18n="nav.womens">Women's Fragrances</a></li>
+                                <li><a href="unisex-fragrances.html" data-i18n="nav.unisex">Unisex Fragrances</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#" data-i18n="nav.arabian">Arabian Fragrances</a></li>
+                <li><a href="#" data-i18n="nav.inspired">Inspired Perfumes</a></li>
+                <li><a href="#"><span data-i18n="nav.newArrivals">New Arrivals</span> <span class="badge">Hot</span></a></li>
+                <li><a href="#" data-i18n="nav.bestSelling">Best Selling</a></li>
+                <li><a href="#" data-i18n="nav.prestige">Prestige Collection</a></li>
+                <li><a href="#" data-i18n="nav.shopByBrand">Shop By Brand ▾</a></li>
+                <li><a href="#"><span data-i18n="nav.limitedOffers">Limited Time Offers</span> <span class="badge">Sale</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- BREADCRUMB — update the current-page text/key per page -->
+    <div class="breadcrumb">
+        <a href="index.html" data-i18n="breadcrumb.home">Home</a>
+        <span class="sep">/</span>
+        <span data-i18n="nav.shopByType">SHOP BY TYPE</span>
+        <span class="sep">/</span>
+        <span class="current" data-i18n="nav.perfumeSprays">Perfume Sprays</span>
+    </div>
+
+    <!-- PAGE HEADER — update h1/p text + data-i18n keys per page -->
+    <section class="page-header">
+        <h1 data-i18n="nav.perfumeSprays">Perfume Sprays</h1>
+        <p data-i18n="page.perfumeSprays.desc">
+            Explore our full range of perfume sprays — long-lasting, travel-friendly and perfect for everyday wear.
+        </p>
+    </section>
+
+    <div class="toolbar">
+        <span class="result-count"><span id="resultCount">0</span> products</span>
+        <select id="sortSelect" aria-label="Sort products">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="newest">Newest</option>
+        </select>
+    </div>
+
+    <!-- PRODUCT GRID — placeholder cards, swap in real products per page -->
+    <div class="product-grid">
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" class="logo" style="color: #fff">FreshFragrance</a>
+                    <p style="margin: 14px 0 16px; max-width: 280px; color: #999" data-i18n="footer.about">
+                        Sign up for our e-mail and be the first who know our special offers!
+                    </p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" id="newsletterEmail" data-i18n-placeholder="footer.emailPlaceholder" placeholder="Email address" required />
+                        <button type="submit">→</button>
+                    </form>
+                    <div class="newsletter-msg" id="newsletterMsg"></div>
+                    <p class="footer-fine" data-i18n="footer.consent">
+                        By clicking the button you agree to the Privacy Policy and Terms and Conditions.
+                    </p>
+                </div>
+                <div>
+                    <h4 data-i18n="footer.support">CUSTOMER SUPPORT</h4>
+                    <ul>
+                        <li><a href="#" data-i18n="footer.helpCentre">Help Centre</a></li>
+                        <li><a href="#" data-i18n="footer.authGuarantee">Authenticity Guarantee</a></li>
+                        <li><a href="#" data-i18n="footer.deliveryInfo">Delivery Information</a></li>
+                        <li><a href="#" data-i18n="footer.orderTracking">Order Tracking</a></li>
+                        <li><a href="#" data-i18n="footer.returns">Returns & Exchanges</a></li>
+                        <li><a href="#" data-i18n="footer.faqs">FAQs</a></li>
+                        <li><a href="#" data-i18n="footer.contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 data-i18n="footer.about2">ABOUT FreshFragrance</h4>
+                    <ul>
+                        <li><a href="#" data-i18n="footer.whoWeAre">Who We Are</a></li>
+                        <li><a href="#" data-i18n="footer.whyChoose">Why Choose Us</a></li>
+                        <li><a href="#" data-i18n="footer.reviews">Customer Reviews & Trust</a></li>
+                        <li><a href="#" data-i18n="footer.awards">Awards & Recognition</a></li>
+                        <li><a href="#" data-i18n="footer.quality">Our Commitment to Quality</a></li>
+                        <li><a href="#" data-i18n="footer.secureCheckout">Secure Checkout</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 data-i18n="footer.shop">SHOP FRAGRANCES</h4>
+                    <ul>
+                        <li><a href="#" data-i18n="footer.latestArrivals">Latest Arrivals</a></li>
+                        <li><a href="#" data-i18n="footer.bestSellers">Best Sellers</a></li>
+                        <li><a href="#" data-i18n="footer.giftSets">Gift Sets</a></li>
+                        <li><a href="#" data-i18n="footer.attars">Perfume Oils & Attars</a></li>
+                        <li><a href="#" data-i18n="footer.specialOffers">Special Offers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 data-i18n="footer.blog">BLOG</h4>
+                    <ul>
+                        <li><a href="#" data-i18n="footer.journal">Fragrance Journal</a></li>
+                        <li><a href="#" data-i18n="footer.buyingGuide">Fragrance Buying Guide</a></li>
+                        <li><a href="#" data-i18n="footer.news">News & Updates</a></li>
+                        <li><a href="#" data-i18n="footer.guides">Fragrance Guides</a></li>
+                        <li><a href="#" data-i18n="footer.notes">Fragrance Notes</a></li>
+                        <li><a href="#" data-i18n="footer.gifting">Gifting Guides</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="payment-row">
+                <img class="payment-icon" src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/american-express.svg?sanitize=true" width="48" height="32" alt="American Express" loading="lazy" />
+                <img class="payment-icon" src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/wallets/apple-pay.svg?sanitize=true" width="48" height="32" alt="Apple Pay" loading="lazy" />
+                <img class="payment-icon" src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/mastercard.svg?sanitize=true" width="48" height="32" alt="Mastercard" loading="lazy" />
+                <img class="payment-icon" src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/apm/paypal.svg?sanitize=true" width="48" height="32" alt="PayPal" loading="lazy" />
+                <img class="payment-icon" src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/visa.svg?sanitize=true" width="48" height="32" alt="Visa" loading="lazy" />
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-left">
+                <span id="copyrightText" data-i18n="footer.copyright">© 2026 FreshFragrance. All rights reserved.</span>
+            </div>
+            <div class="footer-bottom-right">
+                <a href="#" data-i18n="footer.privacy">Privacy policy</a>
+                <a href="#" data-i18n="footer.refund">Refund policy</a>
+                <a href="#" data-i18n="footer.terms">Terms of service</a>
+            </div>
+        </div>
+    </footer>
+    <script src="./assets/site.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./assets/supabase-products.js"></script>
+</body>
+</html>

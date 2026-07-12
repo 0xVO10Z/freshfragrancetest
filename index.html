@@ -1,0 +1,2045 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>FreshFragrance | Luxury Perfumes</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+        <style>
+            :root {
+                --gold: #c9a227;
+                --gold-light: #e8c96a;
+                --black: #0e0e0e;
+                --dark: #1a1a1a;
+                --grey-bg: #f2f2f0;
+                --text-dark: #222;
+                --text-muted: #6b6b6b;
+                --white: #ffffff;
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                font-family: "Manrope", sans-serif;
+                color: var(--text-dark);
+                background: var(--white);
+                overflow-x: hidden;
+                opacity: 0;
+                transition: opacity 0.35s ease;
+            }
+            body.page-loaded {
+                opacity: 1;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+            ul {
+                list-style: none;
+            }
+            img {
+                max-width: 100%;
+                display: block;
+            }
+            button {
+                font-family: inherit;
+                cursor: pointer;
+            }
+
+            .container {
+                max-width: 1300px;
+                margin: 0 auto;
+                padding: 0 24px;
+            }
+
+            .topbar {
+                background: var(--grey-bg);
+                font-size: 12px;
+                letter-spacing: 0.5px;
+                color: var(--text-muted);
+            }
+            .topbar-inner {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 24px;
+                max-width: 1300px;
+                margin: 0 auto;
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+            .topbar-left,
+            .topbar-right {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+            .select-wrap {
+                position: relative;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+            .select-wrap span.label {
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                color: var(--text-muted);
+                font-size: 11px;
+            }
+            .topbar select {
+                background: var(--white);
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                color: var(--text-dark);
+                font-family: inherit;
+                font-size: 12px;
+                padding: 5px 8px;
+                cursor: pointer;
+            }
+            .social-icons {
+                display: flex;
+                gap: 14px;
+            }
+            .social-icons span {
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                background: var(--black);
+                color: var(--white);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px;
+            }
+
+            header {
+                border-bottom: 1px solid #eee;
+                background: var(--white);
+                position: relative;
+                z-index: 50;
+            }
+            .header-inner {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 18px 24px;
+                max-width: 1300px;
+                margin: 0 auto;
+                gap: 20px;
+            }
+            .logo {
+                display: inline-flex;
+                align-items: center;
+                gap: 12px;
+                text-decoration: none;
+            }
+            .logo img {
+                max-height: 52px;
+                width: auto;
+                display: block;
+            }
+            .logo span {
+                font-size: 11px;
+                letter-spacing: 4px;
+                color: var(--gold);
+                font-weight: 600;
+                margin-top: 4px;
+            }
+
+            .search-bar {
+                flex: 1;
+                max-width: 480px;
+                display: flex;
+                align-items: center;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                overflow: hidden;
+                transition:
+                    box-shadow 0.25s ease,
+                    border-color 0.25s ease;
+            }
+            .search-bar:hover,
+            .search-bar:focus-within {
+                box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+                border-color: rgba(201, 162, 39, 0.3);
+            }
+            .search-bar input {
+                flex: 1;
+                border: none;
+                outline: none;
+                padding: 11px 14px;
+                font-family: inherit;
+                font-size: 16px;
+                transition:
+                    background 0.25s ease,
+                    color 0.25s ease;
+            }
+            .search-bar button {
+                background: var(--black);
+                border: none;
+                color: var(--gold);
+                padding: 0 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                align-self: stretch;
+                transition:
+                    background 0.2s ease,
+                    transform 0.2s ease;
+            }
+            .search-bar button:hover {
+                background: #262626;
+                transform: translateY(-1px);
+            }
+
+            .header-icons {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                font-size: 18px;
+            }
+
+            .icon-search-mobile {
+                display: none;
+            }
+            .mobile-tabbar {
+                display: none;
+            }
+            .header-icons a {
+                position: relative;
+            }
+            .cart-count {
+                position: absolute;
+                top: -8px;
+                right: -10px;
+                background: var(--gold);
+                color: var(--black);
+                font-size: 10px;
+                font-weight: 700;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .menu-toggle {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 24px;
+            }
+
+            nav.main-nav {
+                border-top: 1px solid #f0f0f0;
+                position: relative;
+            }
+            .nav-inner {
+                display: flex;
+                justify-content: center;
+                gap: 34px;
+                padding: 14px 24px;
+                max-width: 1300px;
+                margin: 0 auto;
+                font-size: 14px;
+                font-weight: 600;
+            }
+            .nav-inner li {
+                position: relative;
+            }
+            .nav-inner a {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                color: var(--text-dark);
+                transition: color 0.2s;
+            }
+            .nav-inner a:hover,
+            .nav-inner li.active > a {
+                color: var(--gold);
+            }
+            .badge {
+                background: #e8593a;
+                color: #fff;
+                font-size: 10px;
+                padding: 2px 6px;
+                border-radius: 3px;
+                font-weight: 700;
+            }
+
+            .mega-menu {
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%) translateY(10px);
+                background: var(--white);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+                padding: 36px 40px;
+                gap: 60px;
+                width: 800px;
+                max-width: 90vw;
+                z-index: 100;
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transition:
+                    opacity 0.25s ease,
+                    transform 0.25s ease,
+                    visibility 0.25s ease;
+                display: flex;
+            }
+            .has-mega:hover .mega-menu {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+                transform: translateX(-50%) translateY(0);
+            }
+            .mega-col h4 {
+                font-size: 12px;
+                letter-spacing: 1px;
+                color: var(--gold);
+                margin-bottom: 14px;
+                border-bottom: 2px solid var(--gold);
+                display: inline-block;
+                padding-bottom: 6px;
+            }
+            .mega-col li {
+                margin-bottom: 10px;
+            }
+            .mega-col a {
+                font-weight: 500;
+                font-size: 14px;
+                color: var(--text-dark);
+            }
+            .mega-col a:hover {
+                color: var(--gold);
+            }
+
+            .hero {
+                background: linear-gradient(120deg, var(--black) 55%, #111 100%);
+                color: var(--white);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                overflow: hidden;
+                min-height: 460px;
+            }
+            .hero-content {
+                padding: 60px;
+                max-width: 560px;
+            }
+            .hero-content h1 {
+                font-size: 42px;
+                font-weight: 800;
+                color: var(--gold-light);
+                margin-bottom: 20px;
+                letter-spacing: 1px;
+            }
+            .hero-content p {
+                font-size: 16px;
+                color: #d8d8d8;
+                margin-bottom: 30px;
+                line-height: 1.6;
+            }
+            .hero-buttons {
+                display: flex;
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+            .btn {
+                padding: 14px 30px;
+                border: 1px solid var(--gold);
+                color: var(--gold);
+                font-weight: 700;
+                font-size: 13px;
+                letter-spacing: 1px;
+                background: transparent;
+                transition: all 0.25s;
+            }
+            .btn:hover {
+                background: var(--gold);
+                color: var(--black);
+            }
+            .btn.filled {
+                background: var(--gold);
+                color: var(--black);
+            }
+            .btn.filled:hover {
+                background: var(--gold-light);
+            }
+
+            .hero-image {
+                height: 100%;
+                max-width: 50%;
+                background: var(--black);
+            }
+            .hero-image img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                opacity: 0.9;
+                transition:
+                    transform 0.45s ease,
+                    opacity 0.35s ease,
+                    filter 0.35s ease;
+            }
+            .hero-image:hover img {
+                transform: scale(1.03);
+                opacity: 1;
+                filter: saturate(1.05);
+            }
+
+            .reveal-item {
+                opacity: 0;
+                transform: translateY(18px);
+                transition:
+                    opacity 0.6s ease,
+                    transform 0.6s ease;
+            }
+            .reveal-item.reveal-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .features {
+                background: var(--grey-bg);
+                padding: 50px 0;
+            }
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+            }
+            .feature-card {
+                background: var(--white);
+                border-radius: 10px;
+                text-align: center;
+                padding: 34px 20px;
+            }
+            .feature-icon {
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                background: var(--grey-bg);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 16px;
+                font-size: 22px;
+                color: var(--gold);
+            }
+            .feature-card h3 {
+                font-size: 16px;
+                margin-bottom: 6px;
+                font-weight: 700;
+            }
+            .feature-card p {
+                font-size: 13px;
+                color: var(--text-muted);
+            }
+            .feature-line {
+                width: 40px;
+                height: 2px;
+                background: var(--gold);
+                margin: 16px auto 0;
+            }
+
+            .collection-intro {
+                text-align: center;
+                padding: 70px 24px 30px;
+            }
+            .collection-intro .eyebrow {
+                color: var(--gold);
+                font-weight: 600;
+                font-size: 14px;
+                margin-bottom: 10px;
+                display: block;
+            }
+            .collection-intro h2 {
+                font-size: 32px;
+                font-weight: 800;
+                margin-bottom: 14px;
+            }
+            .collection-intro p {
+                color: var(--text-muted);
+                max-width: 600px;
+                margin: 0 auto;
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
+            .product-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+                padding: 40px 24px 80px;
+                max-width: 1300px;
+                margin: 0 auto;
+            }
+            .product-card {
+                border: 1px solid #eee;
+                border-radius: 10px;
+                overflow: hidden;
+                transition: box-shadow 0.25s;
+            }
+            .product-card:hover {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            }
+            .product-img {
+                background: var(--grey-bg);
+                height: 220px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #bbb;
+                font-size: 13px;
+            }
+            .product-info {
+                padding: 18px;
+            }
+            .product-info h4 {
+                font-size: 15px;
+                margin-bottom: 6px;
+            }
+            .product-price {
+                color: var(--gold);
+                font-weight: 700;
+                font-size: 15px;
+            }
+
+            .category-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+                padding: 0 24px 50px;
+                max-width: 1300px;
+                margin: 0 auto;
+            }
+            .category-card {
+                border: 1px solid #eadfba;
+                border-radius: 10px;
+                overflow: hidden;
+                text-align: center;
+                padding-bottom: 26px;
+                transition: box-shadow 0.25s;
+            }
+            .category-card:hover {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            }
+            .category-img {
+                background: var(--grey-bg);
+                height: 220px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #bbb;
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+            .category-card h3 {
+                font-size: 19px;
+                margin-bottom: 10px;
+            }
+            .category-card p {
+                font-size: 13px;
+                color: var(--text-muted);
+                padding: 0 20px;
+                line-height: 1.5;
+            }
+            .category-line {
+                width: 36px;
+                height: 2px;
+                background: var(--gold);
+                margin: 16px auto 0;
+            }
+
+            .refined {
+                background: var(--grey-bg);
+                border-radius: 12px;
+                text-align: center;
+                padding: 50px 40px;
+                max-width: 1300px;
+                margin: 0 auto 60px;
+            }
+            .refined .eyebrow {
+                color: var(--gold);
+                font-weight: 600;
+                font-size: 14px;
+                margin-bottom: 14px;
+                display: block;
+            }
+            .refined h2 {
+                font-size: 32px;
+                font-weight: 700;
+                margin-bottom: 18px;
+            }
+            .refined p {
+                max-width: 900px;
+                margin: 0 auto;
+                color: #555;
+                line-height: 1.7;
+                font-size: 15px;
+            }
+
+            .journal {
+                text-align: center;
+                padding: 70px 24px 30px;
+                border-top: 1px solid #eee;
+            }
+            .journal .eyebrow {
+                color: var(--gold);
+                font-weight: 600;
+                font-size: 14px;
+                margin-bottom: 10px;
+                display: block;
+            }
+            .journal h2 {
+                font-size: 32px;
+                font-weight: 800;
+                margin-bottom: 14px;
+            }
+            .journal > p {
+                color: var(--text-muted);
+                max-width: 750px;
+                margin: 0 auto 40px;
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
+            .journal-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 30px;
+                max-width: 1300px;
+                margin: 0 auto;
+                padding: 0 24px 20px;
+            }
+            .journal-card {
+                text-align: center;
+            }
+            .journal-img {
+                background: var(--grey-bg);
+                height: 220px;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #bbb;
+                font-size: 13px;
+                margin-bottom: 16px;
+            }
+            .journal-card h4 {
+                font-size: 15px;
+                font-weight: 600;
+                line-height: 1.4;
+            }
+
+            .journal-cta {
+                text-align: center;
+                padding: 20px 24px 70px;
+            }
+
+            .confidence {
+                text-align: center;
+                padding: 70px 24px 20px;
+                border-top: 1px solid #eee;
+            }
+            .confidence .eyebrow {
+                color: var(--gold);
+                font-weight: 600;
+                font-size: 14px;
+                margin-bottom: 10px;
+                display: block;
+            }
+            .confidence h2 {
+                font-size: 32px;
+                font-weight: 800;
+                margin-bottom: 14px;
+            }
+            .confidence > p {
+                color: var(--text-muted);
+                max-width: 800px;
+                margin: 0 auto 30px;
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
+            .faq {
+                max-width: 1300px;
+                margin: 0 auto;
+                padding: 0 24px 70px;
+            }
+            .faq-item {
+                border-bottom: 1px solid #eee;
+            }
+            .faq-question {
+                width: 100%;
+                background: none;
+                border: none;
+                text-align: left;
+                padding: 20px 0;
+                font-size: 16px;
+                font-weight: 600;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: var(--text-dark);
+            }
+            .faq-item.open .faq-question {
+                color: var(--gold);
+            }
+            .faq-question .icon {
+                font-size: 20px;
+                font-weight: 400;
+                transition: transform 0.2s;
+            }
+            .faq-item.open .faq-question .icon {
+                transform: rotate(45deg);
+            }
+            .faq-answer {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                font-size: 14px;
+                color: #555;
+                line-height: 1.6;
+            }
+            .faq-answer p {
+                padding-bottom: 20px;
+            }
+
+            footer {
+                background: #1c1c1c;
+                color: #bbb;
+                padding: 60px 0 0;
+                font-size: 14px;
+            }
+            .footer-grid {
+                display: grid;
+                grid-template-columns: 1.3fr 1fr 1fr 1fr 1.2fr;
+                gap: 30px;
+                padding-bottom: 40px;
+            }
+            .footer-grid h4 {
+                color: var(--gold);
+                font-size: 13px;
+                margin-bottom: 16px;
+                letter-spacing: 1px;
+                border-bottom: 2px solid var(--gold);
+                display: inline-block;
+                padding-bottom: 6px;
+            }
+            .footer-grid li {
+                margin-bottom: 10px;
+            }
+            .footer-grid a:hover {
+                color: var(--gold-light);
+            }
+
+            .newsletter-form {
+                display: flex;
+                border: 1px solid #444;
+                border-radius: 6px;
+                overflow: hidden;
+                margin: 16px 0 10px;
+            }
+            .newsletter-form input {
+                flex: 1;
+                border: none;
+                background: #262626;
+                color: #fff;
+                padding: 12px 14px;
+                font-family: inherit;
+                outline: none;
+            }
+            .newsletter-form button {
+                background: var(--gold);
+                border: none;
+                color: var(--black);
+                padding: 0 18px;
+                font-weight: 700;
+            }
+            .newsletter-msg {
+                font-size: 12px;
+                min-height: 16px;
+                margin-bottom: 10px;
+            }
+            .newsletter-msg.success {
+                color: #7ed08a;
+            }
+            .newsletter-msg.error {
+                color: #e8593a;
+            }
+            .footer-fine {
+                font-size: 12px;
+                color: #888;
+            }
+            .footer-fine a {
+                color: #aaa;
+            }
+
+            .payment-row {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                padding: 20px 0;
+                border-top: 1px solid #333;
+            }
+            .pay-chip {
+                width: 52px;
+                height: 34px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                font-weight: 800;
+                overflow: hidden;
+                position: relative;
+                transition: transform 0.2s ease;
+            }
+            .pay-chip:hover {
+                transform: translateY(-2px);
+            }
+            .unionpay-chip {
+                font-size: 9px;
+                font-weight: 800;
+                color: #00447c;
+                letter-spacing: 0.3px;
+            }
+            .shop-chip {
+                font-size: 9px;
+                color: #fff;
+                font-weight: 700;
+                flex-direction: column;
+                gap: 1px;
+            }
+            .shop-chip::after {
+                content: "shop";
+                font-size: 8px;
+                color: #fff;
+            }
+            .maestro-chip {
+                position: relative;
+            }
+            .maestro-chip::before,
+            .maestro-chip::after {
+                content: "";
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+            }
+            .maestro-chip::before {
+                background: #eb001b;
+                left: 13px;
+            }
+            .maestro-chip::after {
+                background: #0099df;
+                left: 21px;
+                mix-blend-mode: multiply;
+            }
+
+            .footer-bottom {
+                border-top: 1px solid #333;
+                padding: 20px 24px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 16px;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 12px;
+                color: #999;
+            }
+            .footer-bottom-left {
+                display: flex;
+                gap: 14px;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            .footer-bottom select {
+                background: #262626;
+                color: #ccc;
+                border: 1px solid #444;
+                border-radius: 4px;
+                padding: 5px 8px;
+                font-family: inherit;
+                font-size: 12px;
+            }
+            .footer-bottom-right {
+                display: flex;
+                gap: 16px;
+                flex-wrap: wrap;
+            }
+
+            @media (max-width: 960px) {
+                .features-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .product-grid,
+                .category-grid,
+                .journal-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .footer-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .hero {
+                    flex-direction: column;
+                    min-height: auto;
+                }
+                .hero-content {
+                    padding: 40px 24px;
+                    max-width: 100%;
+                }
+                .hero-image {
+                    max-width: 100%;
+                    width: 100%;
+                }
+                .hero-image img {
+                    height: 260px;
+                }
+            }
+
+            @media (max-width: 1150px) {
+                .nav-inner {
+                    display: none;
+                }
+                .menu-toggle {
+                    display: block;
+                    position: relative;
+                    z-index: 160;
+                }
+                .mega-menu {
+                    display: none !important;
+                }
+
+                nav.main-nav {
+                    position: fixed;
+                    inset: 0;
+                    z-index: 150;
+                    background: rgba(255, 255, 255, 0.98);
+                    backdrop-filter: blur(14px);
+                    border-top: none;
+                    opacity: 0;
+                    visibility: hidden;
+                    pointer-events: none;
+                    transform: translateX(100%);
+                    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+                    overflow-y: auto;
+                    max-height: 100vh;
+                }
+                nav.main-nav.open {
+                    opacity: 1;
+                    visibility: visible;
+                    pointer-events: auto;
+                    transform: translateX(0);
+                }
+                body.nav-open .menu-toggle {
+                    display: none;
+                }
+
+                .nav-close {
+                    display: flex;
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    width: 44px;
+                    height: 44px;
+                    border: 1px solid rgba(0, 0, 0, 0.12);
+                    border-radius: 50%;
+                    align-items: center;
+                    justify-content: center;
+                    background: var(--white);
+                    font-size: 18px;
+                    color: var(--text-dark);
+                    cursor: pointer;
+                    z-index: 160;
+                    transition: transform 0.2s ease, box-shadow 0.2s ease;
+                }
+                .nav-close:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+                }
+
+                nav.main-nav.open .nav-inner {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0;
+                    text-align: left;
+                    min-height: 100%;
+                    padding: 80px 20px 20px;
+                }
+                nav.main-nav.open .nav-inner li {
+                    width: 100%;
+                    border-bottom: 1px solid #f0f0f0;
+                    padding: 16px 0;
+                }
+                nav.main-nav.open .nav-inner a {
+                    width: 100%;
+                    padding: 14px 0;
+                }
+                nav.main-nav.open .has-mega.open .mega-menu {
+                    display: flex !important;
+                    position: static;
+                    transform: none;
+                    width: 100%;
+                    max-width: 100%;
+                    box-shadow: none;
+                    padding: 10px 20px 24px;
+                    flex-direction: column;
+                    gap: 24px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .topbar {
+                    display: none;
+                }
+                .search-bar {
+                    display: none;
+                }
+                .nav-inner {
+                    display: none;
+                }
+                .mega-menu {
+                    display: none !important;
+                }
+
+                nav.main-nav.open .nav-inner {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0;
+                    text-align: left;
+                }
+                nav.main-nav.open .nav-inner li {
+                    width: 100%;
+                    border-bottom: 1px solid #f0f0f0;
+                    padding: 12px 0;
+                }
+                .hero-content h1 {
+                    font-size: 30px;
+                }
+
+                .menu-toggle {
+                    order: -1;
+                    flex: 1;
+                    display: flex;
+                    justify-content: flex-start;
+                }
+                .logo {
+                    order: 0;
+                    text-align: center;
+                }
+                .header-icons {
+                    order: 1;
+                    flex: 1;
+                    justify-content: flex-end;
+                }
+                .icon-account,
+                .icon-wishlist,
+                .icon-cart {
+                    display: none;
+                }
+                .icon-search-mobile {
+                    display: inline-flex;
+                }
+
+                body {
+                    padding-bottom: 0;
+                }
+                .tab-item {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 4px;
+                    font-size: 10px;
+                    font-weight: 600;
+                    color: var(--text-muted);
+                }
+                .tab-item i {
+                    font-size: 18px;
+                }
+                .tab-item.active {
+                    color: var(--gold);
+                }
+            }
+
+            @media (max-width: 520px) {
+                body {
+                    padding-bottom: 94px;
+                }
+                .mobile-tabbar {
+                    display: flex;
+                    position: fixed;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 200;
+                    background: var(--white);
+                    border-top: 1px solid #eee;
+                    padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+                    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+                }
+                .tab-item {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 4px;
+                    font-size: 10px;
+                    font-weight: 600;
+                    color: var(--text-muted);
+                }
+                .tab-item i {
+                    font-size: 18px;
+                }
+                .tab-item.active {
+                    color: var(--gold);
+                }
+                .features-grid,
+                .product-grid,
+                .category-grid,
+                .journal-grid,
+                .footer-grid {
+                    grid-template-columns: 1fr;
+                }
+                .hero-buttons {
+                    flex-direction: column;
+                }
+                .btn {
+                    width: 100%;
+                    text-align: center;
+                }
+                .footer-bottom {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+
+            .btn {
+                transition:
+                    all 0.25s ease,
+                    transform 0.15s ease;
+            }
+            .btn:hover {
+                transform: translateY(-2px);
+            }
+            .btn:active {
+                transform: translateY(0) scale(0.97);
+            }
+
+            .product-card,
+            .category-card,
+            .feature-card {
+                transition:
+                    transform 0.3s ease,
+                    box-shadow 0.3s ease;
+            }
+            .product-card:hover,
+            .category-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 16px 34px rgba(0, 0, 0, 0.1);
+            }
+            .feature-card:hover {
+                transform: translateY(-4px);
+            }
+            .feature-icon {
+                transition:
+                    transform 0.3s ease,
+                    background 0.3s ease;
+            }
+            .feature-card:hover .feature-icon {
+                transform: scale(1.1);
+                background: #f5ecd2;
+            }
+
+            .product-img,
+            .category-img,
+            .journal-img {
+                transition: filter 0.3s ease;
+                overflow: hidden;
+            }
+            .product-card:hover .product-img,
+            .category-card:hover .category-img,
+            .journal-card:hover .journal-img {
+                filter: brightness(0.97);
+            }
+
+            .nav-inner a {
+                position: relative;
+            }
+            .nav-inner a::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -6px;
+                width: 0;
+                height: 2px;
+                background: var(--gold);
+                transition: width 0.25s ease;
+            }
+            .nav-inner a:hover::after {
+                width: 100%;
+            }
+
+            .header-icons a,
+            .social-icons a,
+            .mobile-tabbar .tab-item {
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                background: var(--black);
+                color: var(--white);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px;
+                transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+            }
+            .mobile-tabbar .tab-item {
+                width: auto;
+                min-width: 54px;
+                padding: 8px 10px;
+                border-radius: 999px;
+                background: rgba(0, 0, 0, 0.06);
+                color: var(--text-muted);
+                font-size: 11px;
+                flex-direction: column;
+            }
+            .mobile-tabbar .tab-item i {
+                transition: transform 0.2s ease;
+            }
+            .mobile-tabbar .tab-item:hover {
+                transform: translateY(-2px) scale(1.03);
+                background: var(--gold);
+                color: var(--black);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+            }
+            .mobile-tabbar .tab-item:hover i {
+                transform: scale(1.1);
+            }
+            .mobile-tabbar .tab-item.active {
+                background: var(--gold);
+                color: var(--black);
+            }
+            .header-icons a:hover {
+                transform: translateY(-2px) scale(1.05);
+                background: var(--gold);
+                color: var(--black);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            }
+            .social-icons a:hover {
+                background: var(--gold);
+                transform: scale(1.08);
+            }
+            .logo {
+                transition: opacity 0.2s ease;
+            }
+            .logo:hover {
+                opacity: 0.8;
+            }
+
+            .topbar select,
+            .footer-bottom select {
+                transition: border-color 0.2s ease;
+            }
+            .topbar select:hover,
+            .footer-bottom select:hover {
+                border-color: var(--gold);
+            }
+
+            body > *:not(.topbar) {
+                transition: opacity 0.25s ease;
+            }
+            body.ff-updating > *:not(.topbar) {
+                opacity: 0.35;
+            }
+
+            @keyframes pricePulse {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.15);
+                    color: var(--gold-light);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+            .product-price.ff-pulse {
+                animation: pricePulse 0.45s ease;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="topbar">
+            <div class="topbar-inner">
+                <div class="topbar-left">
+                    <div class="select-wrap">
+                        <span class="label" data-i18n="topbar.country">COUNTRY</span>
+                        <select id="countrySelect" aria-label="Select country and currency">
+                            <option value="GB">🇬🇧 United Kingdom (GBP £)</option>
+                            <option value="US">🇺🇸 United States (USD $)</option>
+                            <option value="AE">🇦🇪 United Arab Emirates (AED)</option>
+                            <option value="FR">🇫🇷 France (EUR €)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="topbar-right">
+                    <div class="social-icons">
+                        <a
+                            href="https://www.instagram.com/freshfragrancee/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Instagram"
+                            ><i class="fa-brands fa-instagram"></i
+                        ></a>
+                        <a
+                            href="https://www.tiktok.com/@fresh_fragrance"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="TikTok"
+                            ><i class="fa-brands fa-tiktok"></i
+                        ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header>
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <img src="assets/logo.jpeg" alt="FreshFragrance logo" />
+                </a>
+
+                <div class="search-bar">
+                    <input
+                        type="text"
+                        data-i18n-placeholder="header.searchPlaceholder"
+                        placeholder="Search the Collection"
+                    />
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+
+                <div class="header-icons">
+                    <a href="#" class="icon-account"><i class="fa-regular fa-user"></i></a>
+                    <a href="#" class="icon-wishlist"><i class="fa-regular fa-heart"></i></a>
+                    <a href="#" class="icon-search-mobile"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a href="#" class="icon-cart"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count">2</span></a>
+                    <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+                </div>
+            </div>
+
+            <nav class="main-nav" id="mainNav">
+                <button class="nav-close" type="button" aria-label="Close menu">×</button>
+                <ul class="nav-inner">
+                    <li class="has-mega">
+                        <a href="#" data-i18n="nav.perfumeCollection">Perfume Collection ▾</a>
+                        <div class="mega-menu">
+                            <div class="mega-col">
+                                <h4 data-i18n="nav.shopByType">SHOP BY TYPE</h4>
+                                <ul>
+                                    <li><a href="#" data-i18n="nav.perfumeSprays">Perfume Sprays</a></li>
+                                    <li><a href="#" data-i18n="nav.giftSets">Fragrance Gift Sets</a></li>
+                                    <li><a href="#" data-i18n="nav.attars">Perfume Oils & Attars</a></li>
+                                    <li><a href="#" data-i18n="nav.bodySprays">Body Sprays & Deodorants</a></li>
+                                    <li><a href="#" data-i18n="nav.bakhoor">Bakhoor & Incense</a></li>
+                                    <li><a href="#" data-i18n="nav.airFresheners">Luxury Air Fresheners</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-col">
+                                <h4 data-i18n="nav.shopByStyle">SHOP BY STYLE</h4>
+                                <ul>
+                                    <li><a href="#" data-i18n="nav.oudWoody">Oud & Woody</a></li>
+                                    <li><a href="#" data-i18n="nav.floral">Floral</a></li>
+                                    <li><a href="#" data-i18n="nav.freshCitrus">Fresh & Citrus</a></li>
+                                    <li><a href="#" data-i18n="nav.amberOriental">Amber & Oriental</a></li>
+                                    <li><a href="#" data-i18n="nav.sweetGourmand">Sweet & Gourmand</a></li>
+                                    <li><a href="#" data-i18n="nav.muskSoft">Musk & Soft</a></li>
+                                </ul>
+                            </div>
+                            <div class="mega-col">
+                                <h4 data-i18n="nav.shopByGender">SHOP BY GENDER</h4>
+                                <ul>
+                                    <li><a href="#" data-i18n="nav.mens">Men's Fragrances</a></li>
+                                    <li><a href="#" data-i18n="nav.womens">Women's Fragrances</a></li>
+                                    <li><a href="#" data-i18n="nav.unisex">Unisex Fragrances</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#" data-i18n="nav.arabian">Arabian Fragrances</a></li>
+                    <li><a href="#" data-i18n="nav.inspired">Inspired Perfumes</a></li>
+                    <li>
+                        <a href="#"
+                            ><span data-i18n="nav.newArrivals">New Arrivals</span> <span class="badge">Hot</span></a
+                        >
+                    </li>
+                    <li><a href="#" data-i18n="nav.bestSelling">Best Selling</a></li>
+                    <li><a href="#" data-i18n="nav.prestige">Prestige Collection</a></li>
+                    <li class="has-mega">
+                        <a href="#" data-i18n="nav.shopByBrand">Shop By Brand ▾</a>
+                        <div class="mega-menu">
+                            <div class="mega-col">
+                                <h4 data-i18n="nav.shopByBrand">SHOP BY BRAND</h4>
+                                <ul>
+                                    <li><a href="#">Arabian Oud</a></li>
+                                    <li><a href="#">Maison Alhambra</a></li>
+                                    <li><a href="#">Rasasi</a></li>
+                                    <li><a href="#">Amouage</a></li>
+                                    <li><a href="#">Montale</a></li>
+                                    <li><a href="#">Armaf</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#"
+                            ><span data-i18n="nav.limitedOffers">Limited Time Offers</span>
+                            <span class="badge">Sale</span></a
+                        >
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1 data-i18n="hero.title">BUY 5, GET 1 FREE</h1>
+                <p data-i18n="hero.text">
+                    <strong>Build your fragrance squad.</strong> No code needed — add 6 fragrances and the lowest-priced
+                    one becomes free automatically.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn filled" data-i18n="hero.explore">EXPLORE COLLECTION</button>
+                    <button class="btn" data-i18n="hero.limited">LIMITED OFFERS</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img
+                    src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1200&auto=format&fit=crop"
+                    alt="Perfume bottles"
+                />
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 data-i18n="features.securePayments">Secure Payments</h3>
+                    <p data-i18n="features.securePaymentsDesc">Protected by trusted providers.</p>
+                    <div class="feature-line"></div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h3 data-i18n="features.freeDelivery">Free UK Delivery</h3>
+                    <p data-i18n="features.freeDeliveryDesc">Tracked on qualifying orders.</p>
+                    <div class="feature-line"></div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-rotate-left"></i></div>
+                    <h3 data-i18n="features.fastDispatch">Fast Dispatch</h3>
+                    <p data-i18n="features.fastDispatchDesc">Processed within 24 hours.</p>
+                    <div class="feature-line"></div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <h3 data-i18n="features.authenticity">Authenticity Guaranteed</h3>
+                    <p data-i18n="features.authenticityDesc">100% genuine products.</p>
+                    <div class="feature-line"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="collection-intro">
+            <span class="eyebrow" data-i18n="collection.eyebrow">Find the Perfect Scent for Every Occasion</span>
+            <h2 data-i18n="collection.title">Luxury Arabian Perfumes, Oud Fragrances & Inspired Scents</h2>
+            <p data-i18n="collection.text">
+                Explore a curated collection of Arabian perfumes, attar oils, and designer-inspired fragrances — perfect
+                for personal wear or meaningful gifting.
+            </p>
+        </section>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img">Product Image</div>
+                <div class="product-info">
+                    <h4 data-i18n="product.oud">Oud Royale Eau de Parfum</h4>
+                    <span class="product-price" data-price-gbp="39.99">£39.99</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">Product Image</div>
+                <div class="product-info">
+                    <h4 data-i18n="product.amber">Amber Musk Attar Oil</h4>
+                    <span class="product-price" data-price-gbp="24.99">£24.99</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">Product Image</div>
+                <div class="product-info">
+                    <h4 data-i18n="product.floral">Floral Bloom EDP</h4>
+                    <span class="product-price" data-price-gbp="34.99">£34.99</span>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img">Product Image</div>
+                <div class="product-info">
+                    <h4 data-i18n="product.citrus">Fresh Citrus Cologne</h4>
+                    <span class="product-price" data-price-gbp="29.99">£29.99</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-grid">
+            <div class="category-card">
+                <div class="category-img">Category Image</div>
+                <h3 data-i18n="cat.travel">Travel-Size Perfumes</h3>
+                <p data-i18n="cat.travelDesc">Discover Your Favourite Travel Size Perfumes at FreshFragrance</p>
+                <div class="category-line"></div>
+            </div>
+            <div class="category-card">
+                <div class="category-img">Category Image</div>
+                <h3 data-i18n="cat.body">Body Sprays & Deodorants</h3>
+                <p data-i18n="cat.bodyDesc">Delicious blends of floral, oriental & spiced scents.</p>
+                <div class="category-line"></div>
+            </div>
+            <div class="category-card">
+                <div class="category-img">Category Image</div>
+                <h3 data-i18n="cat.air">Luxury Air Fresheners</h3>
+                <p data-i18n="cat.airDesc">Experience the magic of Luxury Arabian air fresheners!</p>
+                <div class="category-line"></div>
+            </div>
+            <div class="category-card">
+                <div class="category-img">Category Image</div>
+                <h3 data-i18n="cat.bakhoor">Bakhoor & Incense</h3>
+                <p data-i18n="cat.bakhoorDesc">Discover Rich, Woody Scents & Light, Fruity Fragrances.</p>
+                <div class="category-line"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="refined">
+                <span class="eyebrow" data-i18n="refined.eyebrow">Trusted UK Fragrance Retailer</span>
+                <h2 data-i18n="refined.title">A Refined Approach to Fragrance</h2>
+                <p data-i18n="refined.text">
+                    FreshFragrance is a UK-based fragrance retailer specialising in Arabian perfumes, oud fragrances,
+                    perfume oils, designer-inspired scents and premium fragrance gifts. Each product is carefully
+                    selected for quality, performance and value, helping you discover long-lasting fragrances with
+                    confidence.
+                </p>
+            </div>
+        </div>
+
+        <section class="journal">
+            <span class="eyebrow" data-i18n="journal.eyebrow">Fragrance Journal</span>
+            <h2 data-i18n="journal.title">Explore Our Latest Perfume Guides</h2>
+            <p data-i18n="journal.text">
+                Discover fragrance inspiration, brand spotlights and scent guides from FreshFragrance — from Arabian
+                perfumes and oud fragrances to fresh, woody, amber and designer-inspired scents.
+            </p>
+        </section>
+
+        <div class="journal-grid">
+            <div class="journal-card">
+                <div class="journal-img">Blog Image</div>
+                <h4 data-i18n="journal.card1">Women's and Unisex Perfumes Explained: Soft, Sweet and Fresh Styles</h4>
+            </div>
+            <div class="journal-card">
+                <div class="journal-img">Blog Image</div>
+                <h4 data-i18n="journal.card2">Sweet Evening Perfumes Explained: Warm and Gourmand Styles</h4>
+            </div>
+            <div class="journal-card">
+                <div class="journal-img">Blog Image</div>
+                <h4 data-i18n="journal.card3">Fresh Perfumes Explained: Clean, Aquatic and Bright Styles</h4>
+            </div>
+            <div class="journal-card">
+                <div class="journal-img">Blog Image</div>
+                <h4 data-i18n="journal.card4">Men's Perfumes Explained: Fresh, Woody and Modern Styles</h4>
+            </div>
+        </div>
+
+        <div class="journal-cta">
+            <button class="btn" data-i18n="journal.readMore">READ MORE FRAGRANCE GUIDES</button>
+        </div>
+
+        <section class="confidence">
+            <span class="eyebrow" data-i18n="confidence.eyebrow">Everything You Need to Know — At a Glance</span>
+            <h2 data-i18n="confidence.title">Shop with Confidence</h2>
+            <p data-i18n="confidence.text">
+                We understand that buying fragrances online requires trust. That's why we focus on authenticity, careful
+                packaging, and reliable delivery — so you receive exactly what you expect, every time. If you still have
+                questions, our team is always here to help.
+            </p>
+        </section>
+
+        <div class="faq" id="faqList">
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span data-i18n="faq.q1">Are your perfumes and fragrances authentic?</span>
+                    <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-i18n="faq.a1">
+                        Yes. Every product we sell is 100% genuine and sourced directly from authorised suppliers and
+                        brands.
+                    </p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span data-i18n="faq.q2">How fast is UK delivery?</span>
+                    <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-i18n="faq.a2">
+                        Most UK orders are dispatched within 24 hours and arrive within 2-3 working days via tracked
+                        delivery.
+                    </p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span data-i18n="faq.q3">Do you offer free UK delivery?</span>
+                    <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-i18n="faq.a3">
+                        Yes, we offer free UK delivery on qualifying orders over £40. The free delivery option will
+                        appear at checkout when your order qualifies.
+                    </p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span data-i18n="faq.q4">Can I return a fragrance order?</span>
+                    <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-i18n="faq.a4">
+                        Unopened items can be returned within 30 days of delivery. Please see our Returns & Exchanges
+                        page for full details.
+                    </p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span data-i18n="faq.q5">What makes FreshFragrance different?</span>
+                    <span class="icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-i18n="faq.a5">
+                        We combine authenticity guarantees, curated Arabian and designer-inspired scents, and dedicated
+                        customer support in every order.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="footer-grid">
+                    <div>
+                        <a href="index.html" class="logo">
+                            <img src="assets/logo.jpeg" alt="FreshFragrance logo" />
+                        </a>
+                        <p style="margin: 14px 0 16px; max-width: 280px; color: #999" data-i18n="footer.about">
+                            Sign up for our e-mail and be the first who know our special offers!
+                        </p>
+                        <form class="newsletter-form" id="newsletterForm">
+                            <input
+                                type="email"
+                                id="newsletterEmail"
+                                data-i18n-placeholder="footer.emailPlaceholder"
+                                placeholder="Email address"
+                                required
+                            />
+                            <button type="submit">→</button>
+                        </form>
+                        <div class="newsletter-msg" id="newsletterMsg"></div>
+                        <p class="footer-fine" data-i18n="footer.consent">
+                            By clicking the button you agree to the Privacy Policy and Terms and Conditions.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 data-i18n="footer.support">CUSTOMER SUPPORT</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="footer.helpCentre">Help Centre</a></li>
+                            <li><a href="#" data-i18n="footer.authGuarantee">Authenticity Guarantee</a></li>
+                            <li><a href="#" data-i18n="footer.deliveryInfo">Delivery Information</a></li>
+                            <li><a href="#" data-i18n="footer.orderTracking">Order Tracking</a></li>
+                            <li><a href="#" data-i18n="footer.returns">Returns & Exchanges</a></li>
+                            <li><a href="#" data-i18n="footer.faqs">FAQs</a></li>
+                            <li><a href="#" data-i18n="footer.contact">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 data-i18n="footer.about2">ABOUT FreshFragrance</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="footer.whoWeAre">Who We Are</a></li>
+                            <li><a href="#" data-i18n="footer.whyChoose">Why Choose Us</a></li>
+                            <li><a href="#" data-i18n="footer.reviews">Customer Reviews & Trust</a></li>
+                            <li><a href="#" data-i18n="footer.awards">Awards & Recognition</a></li>
+                            <li><a href="#" data-i18n="footer.quality">Our Commitment to Quality</a></li>
+                            <li><a href="#" data-i18n="footer.secureCheckout">Secure Checkout</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 data-i18n="footer.shop">SHOP FRAGRANCES</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="footer.latestArrivals">Latest Arrivals</a></li>
+                            <li><a href="#" data-i18n="footer.bestSellers">Best Sellers</a></li>
+                            <li><a href="#" data-i18n="footer.giftSets">Gift Sets</a></li>
+                            <li><a href="#" data-i18n="footer.attars">Perfume Oils & Attars</a></li>
+                            <li><a href="#" data-i18n="footer.specialOffers">Special Offers</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 data-i18n="footer.blog">BLOG</h4>
+                        <ul>
+                            <li><a href="#" data-i18n="footer.journal">Fragrance Journal</a></li>
+                            <li><a href="#" data-i18n="footer.buyingGuide">Fragrance Buying Guide</a></li>
+                            <li><a href="#" data-i18n="footer.news">News & Updates</a></li>
+                            <li><a href="#" data-i18n="footer.guides">Fragrance Guides</a></li>
+                            <li><a href="#" data-i18n="footer.notes">Fragrance Notes</a></li>
+                            <li><a href="#" data-i18n="footer.gifting">Gifting Guides</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <style>
+                    .payment-row img.payment-icon,
+                    .payment-row svg.payment-icon {
+                        height: clamp(22px, 6vw, 32px);
+                        width: auto;
+                        border-radius: 4px;
+                        display: block;
+                        transition:
+                            transform 0.2s ease,
+                            filter 0.2s ease;
+                    }
+                    .payment-row img.payment-icon:hover,
+                    .payment-row svg.payment-icon:hover {
+                        transform: translateY(-2px);
+                        filter: brightness(1.05);
+                    }
+                </style>
+                <div class="payment-row">
+                    <img
+                        class="payment-icon"
+                        src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/american-express.svg?sanitize=true"
+                        width="48"
+                        height="32"
+                        alt="American Express"
+                        loading="lazy"
+                    />
+                    <img
+                        class="payment-icon"
+                        src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/wallets/apple-pay.svg?sanitize=true"
+                        width="48"
+                        height="32"
+                        alt="Apple Pay"
+                        loading="lazy"
+                    />
+                    <img
+                        class="payment-icon"
+                        src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/diners.svg?sanitize=true"
+                        width="48"
+                        height="32"
+                        alt="Diners Club"
+                        loading="lazy"
+                    />
+                    <img
+                        class="payment-icon"
+                        src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/discover.svg?sanitize=true"
+                        width="48"
+                        height="32"
+                        alt="Discover"
+                        loading="lazy"
+                    />
+                    <img
+                        class="payment-icon"
+                        src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/wallets/google-pay.svg?sanitize=true"
+                        width="48"
+                        height="32"
+                        alt="Google Pay"
+                        loading="lazy"
+                    />
+                    <img
+                        class="payment-icon"
+                        src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/maestro.svg?sanitize=true"
+                        width="48"
+                        height="32"
+                        alt="Maestro"
+                        loading="lazy"
+                    />
+                    <img
+                        class="payment-icon"
+                        src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/mastercard.svg?sanitize=true"
+                        width="48"
+                        height="32"
+                        alt="Mastercard"
+                        loading="lazy"
+                    />
+                    <img
+                        class="payment-icon"
+                        src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/apm/paypal.svg?sanitize=true"
+                        width="48"
+                        height="32"
+                        alt="PayPal"
+                        loading="lazy"
+                    />
+                    <svg
+                        class="payment-icon"
+                        viewBox="0 0 120 80"
+                        width="48"
+                        height="32"
+                        xmlns="http://www.w3.org/2000/svg"
+                        role="img"
+                        aria-label="Shop Pay"
+                    >
+                        <rect width="120" height="80" rx="4" fill="#5A31F4" />
+                        <g transform="translate(40 20) scale(1.667)">
+                            <path
+                                fill="#fff"
+                                d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"
+                            />
+                        </g>
+                    </svg>
+                    <img
+                        class="payment-icon"
+                        src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/unionpay.svg?sanitize=true"
+                        width="48"
+                        height="32"
+                        alt="UnionPay"
+                        loading="lazy"
+                    />
+                    <img
+                        class="payment-icon"
+                        src="https://raw.githubusercontent.com/datatrans/payment-logos/master/assets/cards/visa.svg?sanitize=true"
+                        width="48"
+                        height="32"
+                        alt="Visa"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <select id="countrySelectFooter" aria-label="Select country and currency"></select>
+                    <span id="copyrightText" data-i18n="footer.copyright"
+                        >© 2026 FreshFragrance. All rights reserved.</span
+                    >
+                </div>
+                <div class="footer-bottom-right">
+                    <a href="#" data-i18n="footer.privacy">Privacy policy</a>
+                    <a href="#" data-i18n="footer.refund">Refund policy</a>
+                    <a href="#" data-i18n="footer.terms">Terms of service</a>
+                </div>
+            </div>
+        </footer>
+
+        <div class="mobile-tabbar">
+            <a href="#" class="tab-item active" aria-label="Home">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="tab-item" aria-label="Shop">
+                <i class="fa-solid fa-shop"></i>
+                <span>Shop</span>
+            </a>
+            <a href="#" class="tab-item" aria-label="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Search</span>
+            </a>
+            <a href="#" class="tab-item" aria-label="Wishlist">
+                <i class="fa-regular fa-heart"></i>
+                <span>Wishlist</span>
+            </a>
+            <a href="#" class="tab-item" aria-label="Cart">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>Cart</span>
+            </a>
+        </div>
+
+        <script>
+            const menuToggle = document.getElementById("menuToggle");
+            const mainNav = document.getElementById("mainNav");
+            const navClose = document.querySelector(".nav-close");
+            function updateMobileMenuState() {
+                document.body.classList.toggle("nav-open", mainNav.classList.contains("open"));
+            }
+            menuToggle.addEventListener("click", () => {
+                mainNav.classList.toggle("open");
+                updateMobileMenuState();
+            });
+            navClose?.addEventListener("click", () => {
+                mainNav.classList.remove("open");
+                updateMobileMenuState();
+            });
+
+            document.querySelectorAll(".has-mega > a").forEach((link) => {
+                link.addEventListener("click", (e) => {
+                    if (window.matchMedia("(max-width: 1150px)").matches) {
+                        e.preventDefault();
+                        link.parentElement.classList.toggle("open");
+                    }
+                });
+            });
+
+            document.querySelectorAll(".faq-item").forEach((item) => {
+                const question = item.querySelector(".faq-question");
+                const answer = item.querySelector(".faq-answer");
+                question.addEventListener("click", () => {
+                    const isOpen = item.classList.contains("open");
+
+                    document.querySelectorAll(".faq-item").forEach((i) => {
+                        i.classList.remove("open");
+                        i.querySelector(".faq-answer").style.maxHeight = null;
+                    });
+                    if (!isOpen) {
+                        item.classList.add("open");
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                });
+            });
+
+            const newsletterForm = document.getElementById("newsletterForm");
+            const newsletterMsg = document.getElementById("newsletterMsg");
+            newsletterForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const email = document.getElementById("newsletterEmail").value.trim();
+                const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                if (isValid) {
+                    newsletterMsg.textContent = "footer.subscribeSuccess" || "Thanks — you are subscribed!";
+                    newsletterMsg.className = "newsletter-msg success";
+                    newsletterForm.reset();
+                } else {
+                    newsletterMsg.textContent = "Please enter a valid email address.";
+                    newsletterMsg.className = "newsletter-msg error";
+                }
+            });
+
+            const COUNTRIES = {
+                GB: { currency: "GBP", symbol: "£", rate: 1, label: "🇬🇧 United Kingdom (GBP £)" },
+                US: { currency: "USD", symbol: "$", rate: 1.27, label: "🇺🇸 United States (USD $)" },
+                AE: { currency: "AED", symbol: "AED ", rate: 4.66, label: "🇦🇪 United Arab Emirates (AED)" },
+                FR: { currency: "EUR", symbol: "€", rate: 1.16, label: "🇫🇷 France (EUR €)" },
+            };
+
+            async function loadLiveRates() {
+                try {
+                    const res = await fetch("https://api.exchangerate-api.com/v4/latest/GBP");
+                    const data = await res.json();
+                    COUNTRIES.US.rate = data.rates.USD;
+                    COUNTRIES.AE.rate = data.rates.AED;
+                    COUNTRIES.FR.rate = data.rates.EUR;
+                    localStorage.setItem("ff_rates", JSON.stringify(data.rates));
+                    localStorage.setItem("ff_rates_time", Date.now());
+                } catch {
+                    const cached = localStorage.getItem("ff_rates");
+                    if (cached) {
+                        const rates = JSON.parse(cached);
+                        COUNTRIES.US.rate = rates.USD;
+                        COUNTRIES.AE.rate = rates.AED;
+                        COUNTRIES.FR.rate = rates.EUR;
+                    }
+                }
+            }
+
+            function applyCountry(code) {
+                const c = COUNTRIES[code] || COUNTRIES.GB;
+                const priceEls = document.querySelectorAll("[data-price-gbp]");
+
+                if (!isFirstLoad) fadeOut();
+
+                setTimeout(
+                    () => {
+                        priceEls.forEach((el) => {
+                            const base = parseFloat(el.getAttribute("data-price-gbp"));
+                            const converted = (base * c.rate).toFixed(2);
+                            el.textContent = `${c.symbol}${converted}`;
+                            el.classList.remove("ff-pulse");
+                            void el.offsetWidth;
+                            el.classList.add("ff-pulse");
+                        });
+
+                        localStorage.setItem("ff_country", code);
+                        document.getElementById("countrySelect").value = code;
+                        document.getElementById("countrySelectFooter").value = code;
+
+                        if (!isFirstLoad) fadeIn();
+                    },
+                    isFirstLoad ? 0 : 200
+                );
+            }
+
+            let isFirstLoad = true;
+
+            function fadeOut() {
+                document.body.classList.add("ff-updating");
+            }
+            function fadeIn() {
+                requestAnimationFrame(() => document.body.classList.remove("ff-updating"));
+            }
+
+            const countrySelectTop = document.getElementById("countrySelect");
+            const countrySelectFooter = document.getElementById("countrySelectFooter");
+            countrySelectFooter.innerHTML = countrySelectTop.innerHTML;
+
+            [countrySelectTop, countrySelectFooter].forEach((sel) => {
+                sel.addEventListener("change", (e) => applyCountry(e.target.value));
+            });
+
+            (async () => {
+                await loadLiveRates();
+                const savedCountry = localStorage.getItem("ff_country") || "GB";
+                applyCountry(savedCountry);
+                isFirstLoad = false;
+
+                const copyrightEl = document.getElementById("copyrightText");
+                if (copyrightEl) {
+                    const year = new Date().getFullYear();
+                    copyrightEl.textContent = `© ${year} FreshFragrance. All rights reserved.`;
+                }
+            })();
+
+            const revealTargets = document.querySelectorAll(
+                ".hero, .features, .collection-intro, .product-grid, .category-grid, .refined, .journal, .confidence, footer"
+            );
+            revealTargets.forEach((el) => el.classList.add("reveal-item"));
+            const revealObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("reveal-visible");
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.12 }
+            );
+            revealTargets.forEach((el) => revealObserver.observe(el));
+            requestAnimationFrame(() => document.body.classList.add("page-loaded"));
+        </script>
+    </body>
+</html>
